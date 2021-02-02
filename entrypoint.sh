@@ -32,7 +32,7 @@ touch ~/ssh-keys/EmblematicReachServerSSHKey.pem
 echo "$SSH_KEY_PEM" > ~/ssh-keys/EmblematicReachServerSSHKey.pem
 chmod 400 ~/ssh-keys/EmblematicReachServerSSHKey.pem
 
-ssh -i ~/ssh-keys/EmblematicReachServerSSHKey.pem $SSH_HOST "[ -d ~/emblematic-github/${BRANCH_NAME} ] && echo true" > output.txt
+ssh -o StrictHostKeyChecking=no -i ~/ssh-keys/EmblematicReachServerSSHKey.pem $SSH_HOST "[ -d ~/emblematic-github/${BRANCH_NAME} ] && echo true" > output.txt
 CHECK_LENGHT=$(cat output.txt)
 if [[ -z "$CHECK_LENGHT" ]]; then
     echo "Folders not existing the branch ${BRANCH_NAME}. Creating them."
