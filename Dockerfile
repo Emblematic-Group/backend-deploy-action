@@ -8,7 +8,8 @@ ENV GLIBC_VER=2.31-r0
 RUN apk --no-cache add \
         bash \
     && apk add --update npm \
-    && apk add --update nodejs
+    && apk add --update nodejs \
+    && apk add --update openssh
 
 RUN npm install pm2@latest -g 
 ADD entrypoint.sh /entrypoint.sh
