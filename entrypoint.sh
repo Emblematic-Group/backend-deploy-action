@@ -7,7 +7,7 @@ set -e
 echo "Check env variables STARTED"
 
 if [[ ! -z "$BACKEND_FOLDER" ]]; then
-    cd $AWS_FOLDER
+    cd $BACKEND_FOLDER
 fi
 
 if [[ -z "$SSH_KEY_PEM" ]]; then
@@ -35,7 +35,7 @@ chmod 400 ~/ssh-keys/EmblematicReachServerSSHKey.pem
 ssh -o StrictHostKeyChecking=no -i ~/ssh-keys/EmblematicReachServerSSHKey.pem $SSH_HOST "[ -d ~/emblematic-github/${BRANCH_NAME} ] && echo true" > output.txt
 CHECK_LENGHT=$(cat output.txt)
 if [[ -z "$CHECK_LENGHT" ]]; then
-    echo "Folders not existing the branch ${BRANCH_NAME}. Creating them."
+    echo "Folders don't exist for the branch ${BRANCH_NAME}. Busy creting them."
 	
     if [[ "$BRANCH_NAME" == "awsstaging" ]]; then
         pm2 deploy ecosystem.staging.config.js staging setup
