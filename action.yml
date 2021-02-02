@@ -1,0 +1,9 @@
+name: 'PM2 deploy/update'
+description: 'Deploy/Update the Backend'
+author: 'Emblematic Group'
+branding:
+  icon: 'upload-cloud'
+  color: 'orange'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
