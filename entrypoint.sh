@@ -34,8 +34,9 @@ touch ~/ssh-keys/EmblematicReachServerSSHKey.pem
 echo "$SSH_KEY_PEM" > ~/ssh-keys/EmblematicReachServerSSHKey.pem
 chmod 400 ~/ssh-keys/EmblematicReachServerSSHKey.pem
 
-ssh -o StrictHostKeyChecking=no -i ~/ssh-keys/EmblematicReachServerSSHKey.pem $SSH_HOST "[ -d ~/emblematic-github/${BRANCH_NAME} ] && echo true" > output.txt
-CHECK_LENGHT=$(cat output.txt)
+echo "Check the existence of branch folders on remote pc"
+
+CHECK_LENGHT=$(ssh -o StrictHostKeyChecking=no -i ~/ssh-keys/EmblematicReachServerSSHKey.pem $SSH_HOST "[ -d ~/emblematic-github/${BRANCH_NAME} ] && echo true")
 if [[ -z "$CHECK_LENGHT" ]]; then
     echo "Folders don't exist for the branch ${BRANCH_NAME}. Busy creting them."
 	
