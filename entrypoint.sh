@@ -27,6 +27,8 @@ if [[ "$BRANCH_NAME" != "awsstaging" && "$BRANCH_NAME" != "awsproduction" ]]; th
     exit 1
 fi
 
+echo "STARTING PM2 ACTION FOR BRANCH ${BRANCH_NAME}"
+
 mkdir -p ~/ssh-keys
 touch ~/ssh-keys/EmblematicReachServerSSHKey.pem
 echo "$SSH_KEY_PEM" > ~/ssh-keys/EmblematicReachServerSSHKey.pem
@@ -50,11 +52,11 @@ fi
 echo "Deploy/Update the backend with pm2"
 
 if [[ "$BRANCH_NAME" == "awsstaging" ]]; then
-    pm2 deploy ecosystem.staging.config.js staging --force
+    pm2 deploy ecosystem.staging.config.js staging update --force
 fi
 
 if [[ "$BRANCH_NAME" == "awsproduction" ]]; then
-    pm2 deploy ecosystem.production.config.js production --force
+    pm2 deploy ecosystem.production.config.js production update --force
 fi
 
 echo "Deployment is complete!"
