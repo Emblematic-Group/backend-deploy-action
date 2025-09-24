@@ -27,6 +27,9 @@ if [[ "$BRANCH_NAME" != "awsstaging" && "$BRANCH_NAME" != "awsproduction" ]]; th
     exit 1
 fi
 
+sudo update-alternatives --install /usr/bin/openssl openssl /usr/bin/openssl1.1 100
+sudo update-alternatives --set openssl /usr/bin/openssl1.1
+
 echo "STARTING PM2 ACTION FOR BRANCH ${BRANCH_NAME}"
 
 mkdir -p ~/ssh-keys
