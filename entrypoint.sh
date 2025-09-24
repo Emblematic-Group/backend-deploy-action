@@ -26,7 +26,8 @@ if [[ "$BRANCH_NAME" != "awsstaging" && "$BRANCH_NAME" != "awsproduction" ]]; th
     echo "Wrong branch. Only allowed for awsstaging and awsproduction"
     exit 1
 fi
-
+apt upate
+apt install update-alternatives -y
 update-alternatives --install /usr/bin/openssl openssl /usr/bin/openssl1.1 100
 update-alternatives --set openssl /usr/bin/openssl1.1
 
